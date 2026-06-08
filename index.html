@@ -118,6 +118,10 @@ body{font-family:var(--font-body);background:var(--navy);color:var(--white);over
 @keyframes truckDrive{0%{left:-200px}100%{left:110%}}
 .truck-svg{width:140px;height:60px}
 
+/* Vertical animations for mobile */
+@keyframes roadMoveVert{0%{transform:translateY(0)}100%{transform:translateY(-70px)}}
+@keyframes truckDriveVert{0%{bottom:-150px}100%{bottom:105%}}
+
 /* ===== CINEMATIC SCROLL STORY ===== */
 #scroll-story{position:relative;height:90vh;min-height:580px;overflow:hidden}
 .scroll-sticky{position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center}
@@ -340,6 +344,65 @@ body{font-family:var(--font-body);background:var(--navy);color:var(--white);over
   .hero-subtitle{margin-left:auto;margin-right:auto}
   .scroll-dots{right:16px}
   .scroll-skip{right:16px;bottom:16px;font-size:.75rem;padding:8px 14px}
+
+  /* Mobile vertical road and truck animation */
+  .hero-road {
+    bottom: 0;
+    left: auto;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    z-index: 1;
+  }
+  .road-surface {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    bottom: auto;
+    left: auto;
+    background: linear-gradient(90deg, #151f30, #0d1825);
+    border-left: 1px solid var(--border);
+  }
+  .road-line {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    bottom: auto;
+    left: auto;
+    width: 2px;
+    height: 200%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    animation: roadMoveVert 1.5s linear infinite;
+  }
+  .road-line span {
+    display: block;
+    width: 2px;
+    height: 40px;
+    background: var(--orange);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+  .truck-container {
+    position: absolute;
+    right: -25px;
+    bottom: 0;
+    left: auto;
+    transform: rotate(-90deg) scale(0.65);
+    transform-origin: center;
+    animation: truckDriveVert 12s linear infinite;
+  }
+  .truck-svg {
+    width: 100px;
+    height: 43px;
+  }
+  .hero-content {
+    padding-right: 60px;
+  }
 }
 @media(max-width:480px){
   .services-grid{grid-template-columns:1fr}
